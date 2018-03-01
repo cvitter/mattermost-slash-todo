@@ -13,17 +13,17 @@ who executed the request. Adding the channel parameter will cause the command to
 the list of of todo items for the current channel.
 
 
-* `/todo add channel id|description|duedate` - will add a todo item to the channel 
+* `/todo channel add id|description|duedate` - will add a todo item to the channel 
 (replace **channel** with **user** to add it the user's todo list) with an id, 
 description, and due date fields separated by "|".
 
-* `/todo edit channel id|description|duedate` - edits a todo item (by channel or user list).
+* `/todo channel edit id|description|duedate` - edits a todo item (by channel or user list).
 
-* `/todo done channel id` - marks a todo item as done (by channel or user list).
+* `/todo channel done id` - marks a todo item as done (by channel or user list).
 
-* `/todo notdone channel id` - marks a todo item as not done (by channel or user list).
+* `/todo channel notdone id` - marks a todo item as not done (by channel or user list).
 
-* `/todo remove channel id` - deletes an item from the list completely (by channel or user list).
+* `/todo channel remove id` - deletes an item from the list completely (by channel or user list).
 
  
 
