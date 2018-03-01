@@ -4,7 +4,33 @@ This repository contains a Python/Flask application used to power a Mattermost (
 
 **Note**: This code doesn't actually work yet so do not use it!
 
+## Fanciful Specification:
 
+The following is the plan for building the slash command in terms of features:
+
+* `/todo` or `/todo channel` - will return a list of todo items assigned to the channel it
+ was called from (replace channel with user name in the second example view the todo 
+ list for a specific channel).
+
+
+* `/todo add channel id|description|duedate|private` - will add a todo item to the channel 
+(replace channel with user name to add it the user's todo list) with an id, 
+description, due date, and private flag | separated. (**Note**: The private 
+flag means that only the user assigned a todo item can see it. Channel items 
+are visible to anyone in the channel.)
+
+* `/todo edit channel id|description|duedate|private` - edits a todo item.
+
+* `/todo done channel id` - marks a todo item as done (only the person assigned an item 
+can mark it as done).
+
+* `/todo notdone channel id` - marks a todo item as not done (only the person assigned an item 
+can mark it as not done).
+
+* `/todo remove channel id` - deletes an item from the list completely  (only the person 
+assigned an item can delete it). 
+
+ 
 
 
 # Make this Project Better (Questions, Feedback, Pull Requests Etc.)
