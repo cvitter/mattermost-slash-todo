@@ -16,7 +16,7 @@ def getList(channel):
     return json.load( open( channel + '.json' ) )
 
 """
-formatListOutput - output the list of todo items in markdown
+formatListOutput - output the list of todo items in Mattermost markdown
 """
 def formatListOutput(listJson):
     markdown = "TODO List for " + listJson["todo"]["owner_name"] + ":\n"
@@ -47,10 +47,6 @@ def todo():
     channel_id = "" # ID of the channel to verify that we are calling the right channel todo
     user_id = "" # The Mattermost user that executed the slash command
     user_name = "" #
-    listrequested = "" # The list (channel or user) that was requested
-    action = "" # add, edit, done, notdone, remove (list is default action and doesn't need to be specified)
-    itemid = ""
-    itemdetails = []
     
     if len(request.form) > 0:
         # Channel slash command called from
@@ -61,6 +57,14 @@ def todo():
         user_name = request.form["user_name"]
         # "text" = body of slash command
         paramstring = request.form["text"]
+        
+    """
+    
+    """
+    listrequested = "" # The list (channel or user) that was requested
+    action = "" # add, edit, done, notdone, remove (list is default action and doesn't need to be specified)
+    itemid = ""
+    itemdetails = []
     
     """
     Parse the "text" field for channel, command and todo item details
@@ -70,18 +74,14 @@ def todo():
     if len(paramstring) > 0 & paramstring.find(" ") != -1:
         
         paramarray = paramstring.split(" ")
-        if paramarray[0] == "channel": listrequested = "channel_id"
-        action = paramarray[1]
         
-        if len(paramarray[2]) > 0 & paramarray[2].find("|") != -1:
+        if paramarray[0] == "channel": listrequested = channel_id
+        if len(paramarray) > 1: action = paramarray[1]
+        if len(paramarray) > 2  & paramarray[2].find("|") != -1:
             itemdetails = paramarray[2].split("|")
             itemid = itemdetails[0]
         else:
             itemid = paramarray[2]
-
-    
-    # Test value inserted here
-    # listrequested = "a-todo"
     
     # Retrieve the list requested as json
     listJson = getList(listrequested)
@@ -100,10 +100,14 @@ def todo():
     
     elif action == "remove":
         output = ""
-        
+
+    elif action == "help":
+        output = open('help.txt').read()
+                
     else:
         # Get the list requested and generate output as markdown
         output = formatListOutput(listJson)
+        if action == "showall": response_type = "in_channel"
 
     
     
@@ -135,4 +139,5 @@ if __name__ == '__main__':
 Curl Test Posts:
 curl -X POST -F "channel_id=a" -F "channel_name=a" -F "user_id=a-todo" -F "user_name=1" -F text="" http://127.0.0.1:5003/todo
 
+curl -X POST -F "channel_id=a-todo" -F "channel_name=a" -F "user_id=a-todo" -F "user_name=1" -F text="channel showall" http://127.0.0.1:5003/todo
 """

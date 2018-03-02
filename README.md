@@ -8,10 +8,14 @@ This repository contains a Python/Flask application used to power a Mattermost (
 
 The following is the plan for building the slash command in terms of features:
 
+* `/todo help` - returns markdown formatted help for this slash command. 
+
 * `/todo` or `/todo channel` - will return a list of todo items assigned to the current user
 who executed the request. Adding the channel parameter will cause the command to return
 the list of of todo items for the current channel.
 
+* `/todo channel showall` - will return a list of todo items for the current channel that is visible
+to all users.
 
 * `/todo channel add id|description|duedate` - will add a todo item to the channel 
 (replace **channel** with **user** to add it the user's todo list) with an id, 
