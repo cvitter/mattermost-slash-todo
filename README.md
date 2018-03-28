@@ -37,7 +37,7 @@ description, and due date fields separated by "|".
 **Help!** If you like this project and want to make it even more awesome please contribute your ideas,
 code, etc.
 
-If you have any questions, feedback, suggestions, etc. please submit them via issues here: https://github.com/cvitter/mattermost-slash-todo/issues
+If you have any questions, feedback, suggestions, etc. please submit them via issues here: https://github.com/cvitter/mattermost-todo-slash/issues
 
 If you find errors please feel to submit pull requests. Any help in improving this resource is appreciated!
 
